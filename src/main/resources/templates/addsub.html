@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Add Subscription</h1>
+                </div>
+                <!--                <div class="col-sm-6">-->
+                <!--                    <ol class="breadcrumb float-sm-right">-->
+                <!--                        <li class="breadcrumb-item"><a href="#">Home</a></li>-->
+                <!--                        <li class="breadcrumb-item active">Simple Tables</li>-->
+                <!--                    </ol>-->
+                <!--                </div>-->
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+<!--                        <ul>-->
+<!--                            <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('s.*')}" th:text="${error}" />-->
+<!--                        </ul>-->
+                        <form  role="form" th:action="@{/saveSubscription}" method="post"  th:object="${s}" style="margin:20px 20px">
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="CategoryName">Subscription Name :</label>
+                                    <input type="text" class="form-control"  id="CategoryName" th:field="*{subscriptionName}" >
+                                    <div th:if="${#fields.hasErrors('subscriptionName')}"><span th:errors="*{subscriptionName}" class="text-danger"></span></div>
+                                </div>                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CustomerEmail">Price :</label>
+                                <input type="number" class="form-control" id="CustomerEmail"  th:field="*{SubscriptionPrice}" >
+                                <div th:if="${#fields.hasErrors('SubscriptionPrice')}"><span th:errors="*{SubscriptionPrice}" class="text-danger"></span></div>
+                            </div>
+                            <button type="submit" style="background-color: #1d426f; color: #fff;padding: 10px 40px;">Save</button>
+
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</th:block>
+
+</body>
+</html>

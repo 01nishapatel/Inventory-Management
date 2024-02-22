@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+    <!--  &lt;!&ndash; Content Header (Page header) &ndash;&gt;-->
+    <!--  <section class="content-header">-->
+    <!--    <div class="container-fluid">-->
+    <!--      <div class="row mb-2">-->
+    <!--        <div class="col-sm-6">-->
+    <!--          <h1>Simple Tables</h1>-->
+    <!--        </div>-->
+    <!--        <div class="col-sm-6">-->
+    <!--          <ol class="breadcrumb float-sm-right">-->
+    <!--            <li class="breadcrumb-item"><a href="#">Home</a></li>-->
+    <!--            <li class="breadcrumb-item active">Simple Tables</li>-->
+    <!--          </ol>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+    <!--  </section>-->
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div th:if="${errormsg}" class="text-center alert-warning">
+                <ul th:each="err:${errormsg}">
+                    <li th:text="${err}"></li>
+                </ul>
+            </div>
+            <div class="card-header">
+                <h3 class="card-title">Products
+
+                </h3>
+
+                <!--        <div class="card-tools">-->
+                <!--          <a href="/addproduct" class="btn btn-primary btn-sm float-left"  style="margin: 0px 15px 0px 0px;width: fit-content">Add Product</a>-->
+                <!--          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">-->
+                <!--            <i class="fas fa-minus"></i>-->
+                <!--          </button>-->
+                <!--          <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">-->
+                <!--            <i class="fas fa-times"></i>-->
+                <!--          </button>-->
+                <!--        </div>-->
+            </div>
+
+            <div class="card-body p-0" style="margin:20px 20px;">
+                <table class="table table-striped projects table table-bordered">
+                    <thead>
+                    <tr>
+
+                        <th style="width: 20%">
+                            Product Name
+                        </th>
+                        <th style="width: 30%">
+                            Description
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th style="width: 8%" class="text-center">
+                            Current Quantity
+                        </th>
+                        <th style="width: 20%">
+                            Category
+                        </th>
+                        <th>
+                            Action
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product:${products}">
+
+                        <td th:text="${product.ProductID}" hidden></td>
+                        <td th:text="${product.ProductName}">
+
+                        </td>
+                        <td th:text="${product.ProductDescription}">
+
+                        </td>
+                        <td class="project_progress" th:text="${product.ProductPrice}">
+
+
+                        </td>
+                        <td class="project-state" th:text="${product.productQuantity}">
+
+                        </td>
+                        <td th:text="${product.categories.CategoryName}">
+
+                        </td>
+                        <td>
+                            <a th:href="@{/getallsupplier}"  class="btn btn-success btn-sm"
+                               href="#">
+                                <i class="fas fa-edit">
+                                </i>
+                                Edit
+                            </a>
+                            <a th:href="@{/reorderQtyAdd/{id}(id=${product.ProductID})}" style="background-color: #1d426f; color: #fff" class="btn btn-sm"
+                               href="#">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Re-Order
+                            </a>
+
+                        </td>
+                        <!--            <td class="project-actions text-right">-->
+                        <!--&lt;!&ndash;              <a class="btn btn-primary btn-sm" href="#">&ndash;&gt;-->
+                        <!--&lt;!&ndash;                <i class="fas fa-folder">&ndash;&gt;-->
+                        <!--&lt;!&ndash;                </i>&ndash;&gt;-->
+                        <!--&lt;!&ndash;                View&ndash;&gt;-->
+                        <!--&lt;!&ndash;              </a>&ndash;&gt;-->
+                        <!--              <a th:href="@{/updateproduct/{id}(id=${product.ProductID})}" class="btn btn-info btn-sm" href="#">-->
+                        <!--                <i class="fas fa-pencil-alt">-->
+                        <!--                </i>-->
+                        <!--                Edit-->
+                        <!--              </a>-->
+                        <!--              <a th:href="@{/deletePro/{id}(id=${product.ProductID})}" class="btn btn-danger btn-sm" href="#">-->
+                        <!--                <i class="fas fa-trash">-->
+                        <!--                </i>-->
+                        <!--                Delete-->
+                        <!--              </a>-->
+                        <!--            </td>-->
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+
+
+    <th:block layout:fragment="script">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    </th:block>
+
+</body>
+</html>

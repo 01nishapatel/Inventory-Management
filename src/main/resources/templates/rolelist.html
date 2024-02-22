@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Roles
+
+                            </h3>
+
+                            <div class="card-tools">
+                                <a href="/addrole" class="btn float-left"
+                                   style="background-color: #1d426f; color: #fff;padding: 10px 40px;"> <i class="fas fa-plus">
+                                </i>&nbsp;&nbsp;Add New Role</a>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+
+                                    <th style="width:27%">Role</th>
+                                    <th style="width:60%">Description</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="role:${roles}">
+
+                                    <td th:text="${role.roleName}"></td>
+                                    <td th:text="${role.roleDescription}"></td>
+
+                                    <td>
+                                        <a th:href="@{/updaterole/{id}(id=${role.roleID})}" class="btn btn-info btn-sm"
+                                           href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <a th:href="@{/deleteRole/{id}(id=${role.roleID})}"
+                                           onclick="return confirm('Are you sure you want to delete?');"
+                                           class="btn btn-danger btn-sm" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </a>
+                                    </td>
+<!--                                    <td>-->
+<!--                                       -->
+<!--                                    </td>-->
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+
+
+    <th:block layout:fragment="script">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    </th:block>
+
+</body>
+</html>

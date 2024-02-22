@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Management</title>
+
+    <style>
+        .select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 40px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+    </style>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="margin:10px 0;padding:10px 10px;">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <h3>New Invoice</h3>
+                            </div>
+                        </div>
+                        <div th:if="${check}" class="text-center alert-warning">
+                            <p th:text="${check}"></p>
+                        </div>
+                        <form>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="exampleInputText3">First Name</label>
+                                            <input type="text" class="form-control" id="exampleInputText3"
+                                            th:value="${custname}" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="email">Email</label>
+                                            <input type="text" class="form-control" id="email" th:value="${email}" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="phno">Phone No</label>
+                                            <input type="text" class="form-control" id="phno" th:value="${phno}"
+                                           disabled >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="address" th:value="${address}" disabled
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+<!--                        <div th:if="${errormsg2}" class="text-center alert-danger">-->
+<!--                            <p th:text="${errormsg2}"></p></div>-->
+                        <div th:if="${errormsg}" class="text-center alert-warning">
+                            <p th:text="${errormsg}"></p></div>
+                        <div th:if="${erromsg1}" class="text-center alert-warning">
+                            <p th:text="${erromsg1}"></p></div>
+                        <div th:if="${erromsg3}" class="text-center alert-danger">
+                            <p th:text="${erromsg3}"></p></div>
+                        <form role="form" th:action="@{/saveorder}" method="post" th:object="${od}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="from-group" style="padding:0 20px;">
+                                        <label class="col-form-label">Product</label>
+
+                                        <select class="form-control select2" style="width: 100%;" th:field="*{products}">
+                                            <option th:each="product: ${products}" th:value="${product.ProductID}"
+                                                    th:text="${product.ProductName}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" style="padding:0 20px;">
+                                        <label for="Quantity">Quantity :</label>
+                                        <input type="text" class="form-control" id="Quantity" th:field="*{Quantity}">
+                                        <div th:if="${errormsg2}"><span th:text="${errormsg2}" class="text-danger"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn" style="margin:7px 20px;background-color: #1d426f; color: #fff;padding: 10px 40px;">Save</button>
+                        </form>
+
+
+                        <div th:if="${check==null}" style="padding:0 20px;">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Action</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="orderItem:${shoopingcart}">
+                                    <th th:text="${orderItem.products.ProductName}"></th>
+                                    <td th:text="${orderItem.Quantity}"></td>
+                                    <td th:text="${orderItem.products.ProductPrice}"></td>
+                                    <td>
+                                        <a th:href="@{/removebyorderdetailid/{id}(id=${orderItem.OrderDetailID})}"
+                                           class="btn btn-danger btn-sm" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Remove
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <a th:href="@{/invoice/{id}(id=${orderidd})}" class="btn btn-primary btn-sm float-left"
+                                style="margin: 0px 0px 0px 47%;width: fit-content;background-color: #1d426f; color: #fff;padding: 10px 40px;">Generate Invoice</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script>
+        $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+    })
+    </script>
+</th:block>
+
+</body>
+</html>

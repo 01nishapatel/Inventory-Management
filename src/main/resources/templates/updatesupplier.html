@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Supplier</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="margin:10px 0;padding:10px 10px;">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <h3>Update Supplier</h3>
+                            </div>
+                        </div>
+                        <ul>
+                            <li class="alert alert-danger" role="alert"
+                                th:each="error : ${#fields.errors('getSup.*')}"
+                                th:text="${error}"/>
+                        </ul>
+                        <form role="form" th:action="@{/updsupplier/{id}(id=${getSup.SupplierID})}" th:object="${getSup}" style="margin:20px 20px">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="SupplierName">Supplier Name :</label>
+                                    <input type="text" class="form-control" id="SupplierName"
+                                           th:field="*{SupplierName}">
+                                </div>
+                            </div>
+                            <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="SupplierEmail">Email :</label>
+                                <input type="email" class="form-control" id="SupplierEmail"
+                                       th:field="*{supplierEmail}">
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="SupplierPhone">Phone :</label>
+                                <input type="number" class="form-control" id="SupplierPhone"
+                                       th:field="*{SupplierPhone}">
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="SupplierAddress">Address :</label>
+                                <input type="text" class="form-control" id="SupplierAddress"
+                                       th:field="*{SupplierAddress}">
+                            </div>
+                            </div>
+                            <button type="submit" class="btn" style="background-color: #1d426f; color: #fff;padding: 10px 40px;">Save</button>
+                        </form>
+                    </div> <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Main content -->
+</div>
+<th:block layout:fragment="script">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="margin:10px 0;padding:10px 10px; ">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <h3>Add Customer</h3>
+                            </div>
+                        </div>
+
+                        <form  role="form" th:action="@{/savecustomer}" method="post"  th:object="${customer}" style="margin:20px 20px">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="CustomerName">Customer Name :</label>
+                                    <input type="text" class="form-control"  id="CustomerName" th:field="*{CustomerName}" >
+                                    <div th:if="${#fields.hasErrors('CustomerName')}"><span th:errors="*{CustomerName}" class="text-danger"></span></div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email :</label>
+                                <input type="email" class="form-control" id="email"  th:field="*{email}" >
+                                <div th:if="${#fields.hasErrors('email')}"><span th:errors="*{email}" class="text-danger"></span></div>
+                                <div th:if="${emailerror}"><span th:text="${emailerror}" class="text-danger"></span></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phonenumber">Phone No :</label>
+                                <input type="text" class="form-control" id="phonenumber" th:field="*{phonenumber}">
+                                <div th:if="${#fields.hasErrors('phonenumber')}"><span th:errors="*{phonenumber}" class="text-danger"></span></div>
+                                <div th:if="${phnoerror}"><span th:text="${phnoerror}" class="text-danger"></span></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="CustomerAddress">Address :</label>
+                                    <input type="text" class="form-control" id="CustomerAddress" th:field="*{CustomerAddress}" >
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn" style="background-color: #1d426f; color: #fff;padding: 10px 40px;">Save</button>
+
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</th:block>
+
+</body>
+</html>

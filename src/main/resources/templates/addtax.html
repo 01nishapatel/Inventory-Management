@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+<div layout:fragment="content">
+
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="margin:10px 0;padding:10px 10px;">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <h3>Add Tax</h3>
+                            </div>
+                        </div>
+
+                        <form role="form" th:action="@{/saveTax}" method="post" th:object="${t}"
+                              style="margin:20px 20px">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="TaxName">Tax Name :</label>
+                                        <input type="text" class="form-control" id="TaxName"
+                                               th:field="*{TaxName}">
+                                        <div th:if="${#fields.hasErrors('TaxName')}"><span th:errors="*{TaxName}" class="text-danger"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="Rate">Rate :</label>
+                                        <input type="text" class="form-control" id="Rate"
+                                               th:field="*{Rate}">
+                                        <div th:if="${#fields.hasErrors('Rate')}"><span th:errors="*{Rate}" class="text-danger"></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label class="col-form-label">Category</label>
+                                    <select th:field="*{categories}" class="form-control">
+                                        <option th:each="category: ${categories}" th:value="${category.CategoryID}"
+                                                th:text="${category.categoryName}"></option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <button type="submit" class="btn"
+                                    style="background-color: #1d426f; color: #fff;padding: 10px 40px;">Save
+                            </button>
+
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</th:block>
+
+
+
+
+
+
+</body>
+</html>

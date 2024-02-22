@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style th:replace="/shared/style"></style>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>Inventory Management</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password. We will be sending a reset password link to your email.</p>
+      <!--            <div class="alert alert-danger" role="alert" th:each="error:${#fields.Errors('user.*')}">-->
+      <!--                <ul>-->
+      <!--                    <li th:if="err : ${#fields.errors('user.Password')}" th:text="${err}"/>-->
+      <!--                </ul>-->
+      <!--            </div>-->
+      <!--                  <div class="alert alert-danger" role="alert">-->
+      <!--                    <ul>-->
+      <!--                        <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('user.*')}" th:text="${error}" />-->
+      <!--                      <li th:each="err1 : ${#fields.errors('user.email')}" th:text="${err1}"/>-->
+      <!--                        <li th:each="err2 : ${#fields.errors('user.Password')}" th:text="${err2}"/>-->
+      <!--                        <li th:each="err3 : ${#fields.errors('user.confirmPassword')}" th:text="${err3}"/>-->
+      <p class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(errorMessage)}" th:text="${errorMessage}"></p>
+      <!--                    </ul>-->
+      <!--                  </div>-->
+      <form th:action="@{/public/confirmChangePassword}" method="post" th:object="${user}">
+<!--        <div class="input-group mb-3">-->
+<!--          <input type="email" th:field="*{email}" class="form-control" placeholder="Email">-->
+<!--          <div class="input-group-append">-->
+<!--            <div class="input-group-text">-->
+<!--              <span class="fas fa-envelope"></span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="input-group mb-3">
+          <input type="password" th:field="*{Password}" class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" th:field="*{confirmPassword}" class="form-control"
+                 placeholder="Confirm Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Change Password</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<th:block layout:fragment="script"></th:block>
+</body>
+</html>

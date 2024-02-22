@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+    <!--    <section class="content-header">-->
+    <!--        <div class="container-fluid">-->
+    <!--            <div class="row mb-2">-->
+    <!--                <div class="col-sm-6">-->
+    <!--                    <h1>Add User</h1>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--    </section>-->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="padding: 36px 22px;">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <h3>Add User</h3>
+                            </div>
+                        </div>
+                        <div class="text-danger mb-1" style="font-weight:bold;margin:20px 20px;" th:each="error : ${#fields.errors('user.*')}" th:text="${error}"></div>
+                        <ul>
+                            <!--                        <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('user.*')}"-->
+                            <!--                            th:text="${error}"/>-->
+                            <li class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(errorMessage)}"
+                                th:text="${errorMessage}" style="margin:20px 20px;"/>
+                        </ul>
+                        <form role="form" th:action="@{/saveUser}" method="post" th:object="${user}"
+                              style="margin:20px 20px">
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="ProductName">User Name :</label>
+                                    <input type="text" class="form-control" id="ProductName" th:field="*{UserName}">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email :</label>
+                                <input type="email" class="form-control" id="email" th:field="*{email}">
+                            </div>
+                            <div class="form-group">
+                                <label for="ProductPrice">Password :</label>
+                                <input type="password" class="form-control" id="ProductPrice" th:field="*{Password}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password :</label>
+                                <input type="password" class="form-control" id="confirmPassword"
+                                       th:field="*{confirmPassword}">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="col-form-label">Role</label>
+                                    <select th:field="*{roleID}" class="form-control">
+                                        <!--                                        <option th:each="role: ${roles}" th:value="${role.roleID}"-->
+                                        <!--                                                th:text="${role.roleName}"></option>-->
+                                        <span th:each="role: ${roles}">
+                                            <span th:if="${role.roleName!='ADMIN' && role.roleName!='SUPERADMIN'}">
+                                            <option th:value="${role.roleID}"
+                                                    th:text="${role.roleName}"></option>
+                                                </span>
+                                        </span>
+                                    </select>
+                                </div>
+                                <!--                                <div class="form-group col-md-6">-->
+                                <!--                                    <label class="col-form-label">Subscription</label>-->
+                                <!--                                    <select th:field="*{subscriptions}" class="form-control">-->
+                                <!--                                        <option value="0">Select Subscription</option>-->
+                                <!--                                        <option th:each="sub: ${subscriptions}" th:value="${sub.subscriptionID}"-->
+                                <!--                                                th:text="${sub.subscriptionName}"></option>-->
+                                <!--                                    </select>-->
+                                <!--                                </div>-->
+                            </div>
+
+                            <button type="submit" class="btn"
+                                    style="background-color: #1d426f; color: #fff;padding: 10px 40px;">Save
+                            </button>
+
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</th:block>
+
+</body>
+</html>

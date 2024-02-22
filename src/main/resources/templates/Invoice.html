@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Company</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <!-- Content Header (Page header) -->
+
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="invoice p-3 mb-3">
+            <!-- title row -->
+            <div class="row">
+              <div class="col-md-6">
+                <h4>
+<!--                  <i class="fas fa-globe"></i> Company Name-->
+                  <img src="/assets/images/IVM.png" class="w-50 mb-4">
+
+                </h4>
+              </div>
+              <div class="col-md-6">
+                <div class="invoice-id float-right">
+                  <b class="mb-4">Invoice<span th:text="${invoiceid}"></span></b><br>
+                  <small class="">Date: <span th:text="${date}"></span></small>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- info row -->
+            <div class="row invoice-info">
+
+              <div class="col-sm-6 invoice-col">
+                <div class="invoice-add" style="margin-left: 28px;">
+                From
+                <address>
+                  <strong th:text="${comapnyname}"></strong><br>
+                  <div th:text="${companyadd}"></div><br>
+                  Phone: <span th:text="${comapnaynumber}"></span><br>
+                  Email: <span th:text="${companyemail}"></span>
+                </address>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-6 invoice-col">
+                <div class="invoice-cont float-right" style="marign-right:20px;">
+                To
+                <address>
+                  <strong th:text="${customername}"></strong><br>
+                  <div th:text="${address}"></div><br>
+                  Phone: <span th:text="${phno}"></span><br>
+                  Email: <span th:text="${email}"></span>
+                </address>
+              </div>
+              </div>
+            </div>
+            <!-- /.row -->
+
+            <!-- Table row -->
+            <div class="row">
+              <div class="col-12 table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price per unit</th>
+                    <th>Total</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="order:${orderdata}">
+                    <td th:text="${order.products.ProductName}"></td>
+                    <td th:text="${order.Quantity}"></td>
+                    <td th:text="${order.products.ProductPrice}"></td>
+                    <td th:text="${order.Quantity} * ${order.products.ProductPrice}"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <!-- accepted payments column -->
+              <div class="col-6">
+
+              </div>
+              <!-- /.col -->
+              <div class="col-6">
+
+                <div class="table-responsive">
+                  <table class="table">
+                    <tr>
+                      <th>Sub Total:</th>
+                      <td th:text="${subtotal}"></td>
+                    </tr>
+                    <tr>
+                      <th>Tax:</th>
+                      <td th:text="${totaltax}"></td>
+                    </tr>
+                    <tr>
+                      <th>Total:</th>
+                      <td th:text="${total}"></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <!-- this row will not appear when printing -->
+            <div class="row no-print">
+              <div class="col-12">
+                <input type="button" class="btn btn-default float-right" onclick="window.print()"  style="background-color: #1d426f; color: #fff;padding: 10px 40px;" value="Print"/>
+
+
+<!--                <button type="button" class="btn btn-success float-right" ><i class="far fa-credit-card" ></i> Submit-->
+<!--                  Payment-->
+<!--                </button>-->
+<!--                <a th:href="@{/submitpayment/{id}(id=${invoiceid})}" class="btn btn-info btn-sm" href="#">-->
+<!--                  <i class="far fa-credit-card">-->
+<!--                  </i>-->
+<!--                  Submit payment-->
+<!--                </a>-->
+<!--                <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">-->
+<!--                  <i class="fas fa-download"></i> Generate PDF-->
+<!--                </button>-->
+<!--                <a th:href="@{/generatepdf}" class="btn btn-info btn-sm" href="#">-->
+<!--                  <i class="fas fa-download">-->
+<!--                  </i>-->
+<!--                  Submit payment-->
+<!--                </a>-->
+              </div>
+            </div>
+          </div>
+          <!-- /.invoice -->
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</th:block>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Company Details</title>
+    <style th:replace="/shared/style"></style>
+</head>
+<body class="hold-transition register-page">
+<!--    <div class="register-logo">-->
+<!--        <b>Inventory Management</b>-->
+<!--    </div>-->
+<!--    <p class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('user.*')}" th:text="${error}"></p>-->
+<!--    <p class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(errorMessage)}" th:text="${errorMessage}"></p>-->
+    <div class="card" style="width:40%">
+        <div class="card-body register-card-body">
+            <h2 class="login-box-msg">Add Company Details</h2>
+
+            <form role="form" enctype="multipart/form-data" th:action="@{/add}" method="post" th:object="${company}"
+                  style="margin:20px 20px">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="companyName">Company Name :</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="companyName" placeholder="Company Name"
+                                   th:field="*{companyName}">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-building"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" th:if="${#fields.hasErrors('companyName')}"><span th:errors="*{companyName}" class="text-danger"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="companyEmail">Company Email :</label>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" id="companyEmail" placeholder="Company Email"
+                                   th:field="*{companyEmail}">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" th:if="${#fields.hasErrors('companyEmail')}"><span th:errors="*{companyEmail}" class="text-danger"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="companyAddress">Company Address:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="companyAddress" placeholder="Company Address"
+                                   th:field="*{companyAddress}">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-align-justify"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" th:if="${#fields.hasErrors('companyAddress')}"><span th:errors="*{companyAddress}" class="text-danger"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="phoneNo">Phone No:</label>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" id="phoneNo" placeholder="Phone No"
+                                   th:field="*{phoneNo}">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-align-justify"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" th:if="${#fields.hasErrors('phoneNo')}"><span th:errors="*{phoneNo}" class="text-danger"></span></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <label>Image :</label>
+                            <input type="file" name="logo" accept="image/png, image/jpeg"/>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn"
+                        style="background-color: #1d426f; color: #fff;padding: 10px 40px;">Save
+                </button>
+
+            </form>
+        </div>
+        <!-- /.form-box -->
+    </div><!-- /.card -->
+<th:block layout:fragment="script">
+    <script>
+        console.log("Home Page");
+
+
+    </script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="padding:10px 10px;margin:10px 0">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <h3>Add Category</h3>
+                            </div>
+                        </div>
+<!--                      <ul>-->
+<!--                        <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('c.*')}" th:text="${error}" />-->
+<!--                      </ul>-->
+                        <form role="form" th:action="@{/saveCateory}" method="post" th:object="${c}"
+                              style="margin:20px 20px">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="CategoryName">Category Name :</label>
+                                    <input type="text" class="form-control" id="CategoryName"
+                                           th:field="*{CategoryName}">
+                                    <div th:if="${#fields.hasErrors('CategoryName')}"><span th:errors="*{CategoryName}" class="text-danger"></span></div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="CustomerEmail">Description :</label>
+                                <input type="text" class="form-control" id="CustomerEmail"
+                                       th:field="*{CategoryDescription}">
+                            </div>
+                            <button type="submit" style="background-color: #1d426f; color: #fff;padding: 10px 40px;">Save</button>
+
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</th:block>
+
+</body>
+</html>

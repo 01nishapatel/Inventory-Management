@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+    <!--    &lt;!&ndash; Content Header (Page header) &ndash;&gt;-->
+    <!--    <section class="content-header">-->
+    <!--        <div class="container-fluid">-->
+    <!--            <div class="row mb-2">-->
+    <!--                <div class="col-sm-6">-->
+    <!--                    <h1>Simple Tables</h1>-->
+    <!--                </div>-->
+    <!--                <div class="col-sm-6">-->
+    <!--                    <ol class="breadcrumb float-sm-right">-->
+    <!--                        <li class="breadcrumb-item"><a href="#">Home</a></li>-->
+    <!--                        <li class="breadcrumb-item active">Simple Tables</li>-->
+    <!--                    </ol>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+    <!--    </section>-->
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Subscriptions
+
+                </h3>
+
+                <div class="card-tools">
+                    <a href="/addSubsciption" class="btn float-left"   style="background-color: #1d426f; color: #fff;padding: 10px 40px;"> <i class="fas fa-plus">
+                    </i>&nbsp;&nbsp;Add New Subscription</a>
+
+                </div>
+            </div>
+
+            <div class="card-body p-0" style="margin:20px 20px;">
+                <table class="table table-striped projects table table-bordered">
+                    <thead>
+                    <tr>
+
+                        <th style="width: 40%">
+                            Subscription Name
+                        </th>
+                        <th style="width: 40%">
+                            Price
+                        </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="sub:${subs}">
+
+
+                        <td th:text="${sub.subscriptionName}">
+
+                        </td>
+                        <td th:text="${sub.SubscriptionPrice}">
+
+                        </td>
+
+                        <td class="project-actions">
+
+                            <a th:href="@{/updateSubscription/{id}(id=${sub.subscriptionID})}" class="btn btn-info btn-sm" href="#">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Edit
+                            </a>
+                            <a th:href="@{/deletesub/{id}(id=${sub.subscriptionID})}" class="btn btn-danger btn-sm" href="#">
+                                <i class="fas fa-trash">
+                                </i>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+
+
+
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+
+
+
+
+    <th:block layout:fragment="script">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    </th:block>
+
+</body>
+</html>

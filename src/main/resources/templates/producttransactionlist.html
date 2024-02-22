@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!--    <link href="/static/assets/css/maxcdn.bootstrapcdn.com_bootstrap_3.3.7_css_bootstrap.min.css">-->
+    <!--    <link href="/static/assets/css/cdn.datatables.net_1.13.4_css_dataTables.bootstrap.min.css">-->
+    <title>List User</title>
+
+
+    <style>
+        #example_filter{
+            float:right;
+        }
+        #example_length{
+            margin-top:20px;
+        }
+        #example_paginate{
+            float:right;
+        }
+        .paginate_button{
+            border: 1px solid #000;
+            color: gray;
+             padding: 6px 11px;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="card" style="padding: 15px 20px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title">
+                        <h2>Product Transaction</h2>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%;">
+                        <thead>
+                        <tr>
+                            <th hidden>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Supplier Name</th>
+                            <th>Quantity</th>
+                            <th>Is Added</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="pt:${productsTransaction}">
+                            <td th:text="${pt.ProductTransactionID}" hidden></td>
+                            <td th:text="${pt.products.ProductName}"></td>
+                            <td th:text="${pt.suppliers.SupplierName}"></td>
+                            <td th:text="${pt.Quantity}"></td>
+                            <td th:text="${pt.IsAdded}"></td>
+                            <td th:text="${#dates.format(new java.util.Date(pt.createdAt), 'dd-MMM-yyyy')}"></td>
+                            <span th:if="${pt.CustomerID}!=null">
+                                <td  th:text="${pt.CustomerID.CustomerName}"></td>
+                            </span>
+                            <span th:unless="${pt.CustomerID}!=null">
+                                <td> <p>---</p> </td>
+                            </span>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+
+    <script>
+    $(document).ready(function() {
+    $('#example').dataTable();
+} );
+
+</script>
+
+
+
+</th:block>
+
+</body>
+
+
+</html>

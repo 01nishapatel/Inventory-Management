@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Main content -->
+    <div class="alert alert-success" role="alert" th:text="${success}" th:if="${success}"></div>
+    <div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error}"></div>
+    <section class="content">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Supplier</h3>
+                <div class="card-tools">
+                    <a href="/addsupplier" class="btn float-left"
+                       style="background-color: #1d426f; color: #fff;padding: 10px 40px;"> <i class="fas fa-plus">
+                    </i>&nbsp;&nbsp;Add Supplier</a>
+
+                    <!--                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">-->
+                    <!--                        <i class="fas fa-times"></i>-->
+                    <!--                    </button>-->
+                </div>
+            </div>
+
+            <div class="card-body p-0" style="margin:20px 20px;">
+                <table class="table table-striped projects table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="width: 15%">Name</th>
+                        <th style="width: 25%">Email</th>
+                        <th style="width:8%">Phone No</th>
+                        <th style="width: 27%" class="text-center">Address</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="supplier:${suppliers}">
+                        <td th:text="${supplier.SupplierName}"></td>
+                        <td th:text="${supplier.supplierEmail}"></td>
+                        <td th:text="${supplier.SupplierPhone}"></td>
+                        <td class="project_progress" th:text="${supplier.SupplierAddress}"></td>
+                        <td>
+                            <a th:href="@{/getsupplierbyid/{id}(id=${supplier.SupplierID})}" class="btn btn-info btn-sm"
+                               href="#">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                Edit
+                            </a>
+                            <a th:href="@{/deletesupplier/{id}(id=${supplier.SupplierID})}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Are you Sure, You want to delete?');">
+                                <i class="fas fa-trash">
+                                </i>
+                                Delete
+                            </a>
+                            <a th:href="@{/getallProductBysupplier/{id}(id=${supplier.SupplierID})}"
+                               class="btn btn-success btn-sm">
+                                <i class="fas fa-eye">
+                                </i>
+                                Show Products
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+
+
+    <th:block layout:fragment="script">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    </th:block>
+</div>
+</body>
+</html>

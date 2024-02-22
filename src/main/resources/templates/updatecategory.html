@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="margin:10px 0;padding:10px 10px;">
+                        <div class="col-md-12">
+                            <div class="title">
+                                <h3>Update Category</h3>
+                            </div>
+                        </div>
+                        <form  role="form" th:action="@{/updCategory/{id}(id=${updcate.CategoryID})}" th:object="${updcate}" style="margin:20px 20px" >
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="CategoryName">Category Name :</label>
+                                    <input type="text" class="form-control"  id="CategoryName" th:field="*{CategoryName}" >
+
+                                </div>
+
+                            </div>
+                             <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="CustomerEmail">Description :</label>
+                                <input type="text" class="form-control" id="CustomerEmail"  th:field="*{CategoryDescription}" >
+                            </div>
+                            </div>
+                            <button type="submit" class="btn" style="background-color: #1d426f; color: #fff;padding: 10px 40px;">Save</button>
+
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</th:block>
+
+</body>
+</html>

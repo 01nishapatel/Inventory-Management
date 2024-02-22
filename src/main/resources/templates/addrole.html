@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html layout:decorate="~{shared/layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List User</title>
+</head>
+<body>
+
+
+<div layout:fragment="content">
+
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" style="margin:10px 0;padding:10px 10px;">
+                       <div class="col-md-12">
+                            <div class="title">
+                                <h3>Add Role</h3>
+                            </div>
+                        </div>
+                        <form role="form" th:action="@{/saverole}" method="post" th:object="${role}"
+                              style="margin:20px 20px">
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="roleName">Role Name :</label>
+                                    <input type="text" class="form-control" id="roleName" th:field="*{roleName}">
+                                    <div th:if="${#fields.hasErrors('roleName')}"><span th:errors="*{roleName}" class="text-danger"></span></div>
+                                </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="roleDescription">Description :</label>
+                                <input type="text" class="form-control" id="roleDescription"
+                                       th:field="*{roleDescription}">
+                            </div>
+                            <button type="submit" style="background-color: #1d426f; color: #fff;padding: 10px 40px;">Save</button>
+
+                        </form>
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Main content -->
+
+
+</div>
+
+
+<th:block layout:fragment="script">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+</th:block>
+
+</body>
+</html>
